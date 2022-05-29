@@ -25,7 +25,8 @@ header {
 }
 
 button {
-  all: unset;
+  border: unset;
+  background-color: unset;
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
   font-size: 1.5rem;
