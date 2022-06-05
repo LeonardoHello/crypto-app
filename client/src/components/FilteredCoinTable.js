@@ -10,7 +10,9 @@ const FilteredCoinTable = ({ filter }) => {
       const resJson = await res.json();
       setStats(resJson.data.coins);
     }
-    api();
+    setInterval(() => {
+      api();
+    }, 2000);
   }, []);
 
   return (

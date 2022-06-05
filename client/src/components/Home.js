@@ -24,13 +24,13 @@ export const Home = () => {
 
   const resizeObserver = new ResizeObserver(entries => {
     setBodyWidth(entries[0].contentRect.width);
-  })
+  });
 
   const options = {
     root: document.getElementById('filter'),
     rootMargin: '0px',
     threshold: 0.5
-  }
+  };
 
   const intersectionObserver = new IntersectionObserver(entries => {
     if (entries.length === 1) {
@@ -60,22 +60,22 @@ export const Home = () => {
       }
     }
     
-  }, options)
+  }, options);
 
   useEffect(() => {
     resizeObserver.observe(document.querySelector('body'));
     [...document.querySelectorAll('#filter > *')].forEach(elem => {
       if (elem === document.querySelector('#filter > button:first-of-type') || elem === document.querySelector('#filter > button:last-of-type')) {
-        intersectionObserver.observe(elem)
+        intersectionObserver.observe(elem);
       }
-    })
+    });
 
     const gobalCryptoStats = async () => {
       const res = await fetch('/stats');
       const resJson = await res.json();
       setGlobalStats([['Total Cryptocurrencies:', resJson.data.totalCoins.toLocaleString('en-US')], ['Total Markets:', resJson.data.totalMarkets.toLocaleString('en-US')], ['Total Market Cap:', Number.parseFloat(resJson.data.totalMarketCap).toLocaleString('en-US')], ['Total Exchanges:', resJson.data.totalExchanges.toLocaleString('en-US')], ['Total 24h Volume:', Number.parseFloat(resJson.data.total24hVolume).toLocaleString('en-US')]]);
     }
-    gobalCryptoStats()
+    gobalCryptoStats();
   }, []);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export const Home = () => {
       setCurrencyStats(resJson.data.coins);
     }
     currencieSearch()
-  }, [search, tag, orderBy, orderDirection])
+  }, [search, tag, orderBy, orderDirection]);
 
   useEffect(() => {
     const currencieSearch = async () => {
@@ -97,7 +97,7 @@ export const Home = () => {
       setCurrencyStats(resJson.data.coins);
     }
     currencieSearch()
-  }, [offset])
+  }, [offset]);
 
   const searchInput = (e) => {
     setSearch(e.target.value);
